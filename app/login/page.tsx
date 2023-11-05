@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {signIn} from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
@@ -8,23 +8,24 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const router = useRouter();
 
+
  const handleSubmit = async (e) => {
-  e.preventDefault();
-  
+ e.preventDefault()
   signIn("credentials", {
     email, password,
     redirect: false
   })
 
-  router.push("/dashboard")
+  router.push("/")
 
 
-}
-  
-
+ }
 
   return (
-    <div className="max-w-md mx-auto">
+    <div className="fixed lopas top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-75"
+>
+  <div className="bg-white  p-4 w-1/2 md:w-1/3 lg:w-1/4 text-center border border-black">
+
       <h2 className="text-3xl font-semibold mb-4">Login Form</h2>
       <form className="space-y-4" onSubmit={handleSubmit}>
         <div>
@@ -60,6 +61,7 @@ const LoginForm = () => {
           </button>
         </div>
       </form>
+    </div>
     </div>
   );
 };
