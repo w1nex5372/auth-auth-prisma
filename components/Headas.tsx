@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import CustomButton from './CustomBtn';
 import LoginForm from '@/app/login/page';
 import RegistrationForm from '@/app/register/page';
