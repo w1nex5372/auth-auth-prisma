@@ -5,7 +5,11 @@ const MainScreen = () => {
   return (
     <div className='border'>  
          <Headas></Headas>
-   <HomeScreen></HomeScreen>
+         <div>  
+               <HomeScreen></HomeScreen>
+               
+         </div>
+
     </div>
   )
 }

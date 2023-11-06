@@ -5,6 +5,9 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { comparePasswords } from "@/utils/passwordUtils";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 const prisma = new PrismaClient();
+
+
+
 const authOptions = {
   adapter: PrismaAdapter(prisma),
   // Configure one or more authentication providers
@@ -15,45 +18,54 @@ const authOptions = {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials) {
-        console.log("Authorization attempt with:", credentials.email);
+      async authorize(credentials: Record<"email" | "password", string> | undefined) {
+  if (!credentials) {
+    return null;
+  }
+  console.log("Authorization attempt with:", credentials.email);
 
-        try {
-          const user = await prisma.user.findUnique({
-            where: {
-              email: credentials.email,
-            },
-          });
-
-          if (!user) {
-            console.log("User not found for email:", credentials.email);
-            return Promise.resolve(null);
-          }
-
-          const passwordMatch = await comparePasswords(
-            credentials.password,
-            user.password
-          );
-          console.log("Password match:", passwordMatch);
-
-          if (passwordMatch) {
-            console.log("User authenticated:", user.email);
-            return Promise.resolve(user);
-          } else {
-            console.log("Password does not match for user:", user.email);
-            return Promise.resolve(null);
-          }
-        } catch (error) {
-          console.error("Error during authorization:", error);
-          return Promise.resolve(null);
-        }
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        email: credentials.email,
       },
+    });
+
+    if (!user) {
+      console.log("User not found for email:", credentials.email);
+      return Promise.resolve(null);
+    }
+
+    const userObject = {
+      id: user.id.toString(), // Convert to a string
+      email: user.email,
+      password: user.password,
+    };
+
+    const passwordMatch = await comparePasswords(
+      credentials.password,
+      user.password
+    );
+    console.log("Password match:", passwordMatch);
+
+    if (passwordMatch) {
+      console.log("User authenticated:", user.email);
+      return Promise.resolve(userObject);
+    } else {
+      console.log("Password does not match for user:", user.email);
+      return Promise.resolve(null);
+    }
+  } catch (error) {
+    console.error("Error during authorization:", error);
+    return Promise.resolve(null);
+  }
+}
+
     }),
   ],
-  session: {
-    strategy: "jwt",
-    jwt: true, // Enable JWT sessions
-    // You can specify the secret here:
+ session: {
+    strategy: "jwt" as const, // Specify the correct strategy as "jwt"
+    jwt: true,
     secret: process.env.NEXTAUTH_SECRET,
   },
 };
