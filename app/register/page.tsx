@@ -1,11 +1,11 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 
 const RegistrationForm = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
 
-      const handleSubmit = async (e) => {
+      const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     console.log(formData)
     try {
