@@ -1,15 +1,11 @@
 import React from 'react'
 import Headas from './Headas'
-import { HomeScreen } from './HomeScreen'
+import Home from '@/app/page'
 const MainScreen = () => {
   return (
     <div className='border'>  
          <Headas></Headas>
-         <div>  
-               <HomeScreen></HomeScreen>
-               
-         </div>
-
+      <Home></Home>
     </div>
   )
 }

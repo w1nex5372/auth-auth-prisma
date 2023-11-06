@@ -1,10 +1,9 @@
 'use client'
-import Link from 'next/link'; // Import Link from 'next/link'
 import CustomButton from '@/components/CustomBtn';
 import { Navlinks } from '@/components/navlinks';
-import MainScreen from '@/components/mainScreen';
 import React, { useState, useEffect } from 'react'
-
+import Headas from '@/components/Headas';
+import DisplayedScreen from '@/components/DisplayedScreen';
 
 export default function Home() {
  
@@ -14,11 +13,12 @@ export default function Home() {
         <Navlinks></Navlinks>
       </div>
       <div className="flex-auto text-right"> 
-      <MainScreen>
-      </MainScreen>
+    <Headas></Headas>
+    <DisplayedScreen></DisplayedScreen>
+  
       </div>
     </main>
-  );
+  ); 
 }
 
 

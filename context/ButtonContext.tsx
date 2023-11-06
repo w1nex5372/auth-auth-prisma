@@ -1,13 +1,19 @@
 // ButtonContext.js
 'use client'
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, ReactNode } from "react";
 
 const ButtonContext = createContext();
 
-export const ButtonProvider = ({ children }) => {
-  const [clickedButtonText, setClickedButtonText] = useState("");
 
-  const updateClickedButtonText = (text) => {
+interface ButtonProviderProps {
+  children: ReactNode;
+}
+
+
+export const ButtonProvider = ({ children }: ButtonProviderProps) => {
+  const [clickedButtonText, setClickedButtonText] = useState("Home"); // Set the default value to "Home".
+
+  const updateClickedButtonText = (text: string) => {
     setClickedButtonText(text);
   };
 

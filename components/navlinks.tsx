@@ -2,31 +2,27 @@ import React, { useState } from 'react';
 import CustomButton from './CustomBtn';
 import { useButtonContext } from '@/context/ButtonContext';
 
-
 export const Navlinks = () => {
-  const [activeButton, setActiveButton] = useState(null);
-    const { updateClickedButtonText } = useButtonContext();
+  const { updateClickedButtonText } = useButtonContext();
+  const [activeButton, setActiveButton] = useState('Home'); // Set the default activeButton to 'Home'.
 
-
-  const handleButtonClick = (index, text) => {
-    setActiveButton(index);
-    updateClickedButtonText(text)
+  const handleButtonClick = (button) => {
+    setActiveButton(button);
+    updateClickedButtonText(button);
   };
 
-  const buttons = ['Dashboard 1', 'Dashboard 2', 'Dashboard 3', 'Dashboard 4', 'Dashboard 5'];
+  const buttons = ['Home', 'Explore', 'Dashboard3', 'Dashboard4', 'Dashboard5'];
 
   return (
     <div className="bg-blue-600 flex flex-col h-full">
-      <h1 className='text-white text-2xl font-bold text-center m-3'>Logo</h1>
+      <h1 className="text-white text-2xl font-bold text-center m-3">Logo</h1>
       <div className="flex flex-col">
-        {buttons.map((button, index) => (
+        {buttons.map((button) => (
           <CustomButton
-            key={index}
-          
-                secondary={index !== activeButton}
-
-            primary={index === activeButton}
-            onClick={() => handleButtonClick(index, button)}
+            key={button}
+            secondary={button !== activeButton}
+            primary={button === activeButton}
+            onClick={() => handleButtonClick(button)}
           >
             {button}
           </CustomButton>
