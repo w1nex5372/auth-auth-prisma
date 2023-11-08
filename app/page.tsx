@@ -14,7 +14,16 @@ export default function Home() {
       </div>
       <div className="flex-auto text-right"> 
     <Headas></Headas>
+  <div className="flex h-full">
+  <div className="displayed-screen" style={{ flex: '80%' }}>
     <DisplayedScreen></DisplayedScreen>
+  </div>
+  <div className="sidescreen" style={{ flex: '20%' }}>
+    123
+  </div>
+</div>
+
+   
   
       </div>
     </main>

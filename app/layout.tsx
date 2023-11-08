@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { ButtonProvider } from '@/context/ButtonContext'
 import Provider from '@/context/provider'
+import { ThemeProvider } from '@material-tailwind/react'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
