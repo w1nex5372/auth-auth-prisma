@@ -20,8 +20,8 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   active = false,
 }) => {
   const buttonStyles = `
-  ${primary ? 'bg-white text-black border border-white px-8 px-4 py-2 m-4' : ''}
-  ${secondary ? 'bg-blue-600 text-white px-8 py-2 m-4 py-2' : ''}
+  ${primary ? 'bg-white font-bold text-black  px-8 px-4 py-2 m-4' : 'text-white'}
+  ${secondary ? 'px-8 py-2 m-4 py-2 ' : ''}
 `;
 
 

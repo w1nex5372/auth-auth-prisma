@@ -1,12 +1,13 @@
-// FontAwesomeIcon.js
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
-// Import the icons you want to use
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
-
-export default function MyFontAwesomeIcon() {
-  return (
-    <FontAwesomeIcon icon={faCoffee} />
-  );
+interface MyFontAwesomeIconProps {
+  icon?: IconProp;
+  className? : string
 }
+
+const MyFontAwesomeIcon: React.FC<MyFontAwesomeIconProps> = ({ icon, className }) => {
+  return <FontAwesomeIcon icon={icon} className={className}/>;
+};
+
+export default MyFontAwesomeIcon;

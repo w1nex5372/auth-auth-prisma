@@ -4,7 +4,8 @@ import { Navlinks } from '@/components/navlinks';
 import React, { useState, useEffect } from 'react'
 import Headas from '@/components/Headas';
 import DisplayedScreen from '@/components/DisplayedScreen';
-
+import CustomImage from '@/components/CustomImage';
+CustomImage
 export default function Home() {
  
   return (
@@ -18,7 +19,7 @@ export default function Home() {
   <div className="displayed-screen" style={{ flex: '80%' }}>
     <DisplayedScreen></DisplayedScreen>
   </div>
-  <div className="sidescreen" style={{ flex: '20%' }}>
+  <div className="sidescreen bg-green-400" style={{ flex: '20%' }}>
     123
   </div>
 </div>

@@ -18,7 +18,7 @@ const DisplayedScreen = () => {
  
 
   return (
-    <div className="w-full h-full border borde-red ">
+    <div className="w-full h-full">
         {content ? content : "DisplayedScreen"}
 
     </div>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import CustomButton from './CustomBtn';
 import { useButtonContext } from '@/context/ButtonContext';
-import Link from 'next/link';
 export const Navlinks = () => {
   const { updateClickedButtonText } = useButtonContext();
   const [activeButton, setActiveButton] = useState('Home'); // Set the default activeButton to 'Home'.
@@ -11,11 +10,11 @@ export const Navlinks = () => {
     updateClickedButtonText(button);
   };
 
-  const buttons = ['Home', 'Explore', 'Message', 'Dashboard4', 'Profile'];
+  const buttons = ['Home', 'Explore', 'Message', 'Profile'];
 
   return (
-    <div className="bg-blue-600 flex flex-col h-full">
-      <h1 className="text-white text-2xl font-bold text-center m-3">Logo</h1>
+    <div className="relative overflow-auto bg-primary  p-5 flex flex-col h-full">
+      <h1 className="text-secondary text-2xl font-bold text-center m-3">Logo</h1>
       <div className="flex flex-col">
         {buttons.map((button) => (
           <CustomButton

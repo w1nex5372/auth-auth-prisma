@@ -34,7 +34,7 @@ const Headas = () => {
     setShowLoginForm(!ShowLoginForm);
   };
 
-  const handleBody = (event) => {
+  const handleBody = (event : any) => {
     const classNames = event.target.className.split(' ');
     if (classNames.includes('lopas') && ShowLoginForm === true) {
       setShowLoginForm(false);
@@ -62,7 +62,7 @@ const Headas = () => {
   }, [ShowLoginForm, showRegisterForm]);
 
   return (
-    <div className="border">
+    <div className="">
     
       <div>
         {isLoggedIn ? ( // Render different buttons based on the authentication status
