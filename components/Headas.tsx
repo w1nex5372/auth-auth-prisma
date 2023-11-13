@@ -71,10 +71,10 @@ const Headas = () => {
           </UserIcons>
         ) : (
           <>
-            <CustomButton customClassName="border border-red bg-green" onClick={handleShowLoginForm}>
+            <CustomButton customClassName="text-xs h-max hover:bg-primary p-1 bg-secondary md:p-3 m-1" onClick={handleShowLoginForm}>
               Log In
             </CustomButton>
-            <CustomButton customClassName="border border-red" onClick={handleShowRegisterForm}>
+            <CustomButton customClassName="text-xs h-max hover:bg-secondary p-1 bg-primary md:p-3 m-1" onClick={handleShowRegisterForm}>
               Register
             </CustomButton>
           </>

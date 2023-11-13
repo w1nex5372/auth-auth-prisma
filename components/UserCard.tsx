@@ -1,7 +1,8 @@
 import React from 'react';
 import CustomImage from './CustomImage';
 
-const UserCard = () => {
+const UserCard = ({ size = "normal"}) => {
+  const cardSizesClass = size === "normal" ? "" : "w"
   return (
     <div className=" bg-white rounded-lg shadow-md p-4 m-2">
       <div className="flex items-center text-center flex-col	">
