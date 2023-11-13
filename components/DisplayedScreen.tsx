@@ -15,6 +15,8 @@ const DisplayedScreen = () => {
         content = <UserProfile />
       } else if (clickedButtonText === "Message"){
         content = <MessagePage />
+      } else if (clickedButtonText === "Home"){
+        content = <Home />
       }
 
   // Render the specific page component based on the activeButton
