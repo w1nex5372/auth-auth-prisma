@@ -222,6 +222,12 @@ style={inputValue.trim() === '' && images.length === 0 ? { pointerEvents: 'none'
         </button>
       </div>
 
+
+            {/* bus componentas kuriame visi gales postinti ir matyti */}
+        <div>
+          
+        </div>
+
       {/* Render other messages */}
       {messages.map((message, index) => (
         <div key={index} className='bg- border ml-2 rounded-sm mt-3'>
