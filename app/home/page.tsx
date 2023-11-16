@@ -30,7 +30,8 @@ const Homer: React.FC<HomerProps> = () => {
   const [comment, setComment] = useState('');
   const [comments, setComments] = useState<{ [index: number]: Comment[] }>({});
   const [activePostIndex, setActivePostIndex] = useState<number | null>(null);
-const [likes, setLikes] = useState<{ [index: number]: number }>({});
+const [likes, setLikes] = useState<{ [index: number]: number | "" }>({});
+
 
   
  const handleActiveCommentClick = (index: number) => {
@@ -46,7 +47,6 @@ const handleCommentClose = () => {
 }
 
 
-
 const handleThumbsUp = (index: number) => {
   // Create a copy of the likes state
   const newLikes = { ...likes };
@@ -54,10 +54,11 @@ const handleThumbsUp = (index: number) => {
   // If the post has been liked, toggle the like count; otherwise, set it to 1
   newLikes[index] = newLikes[index] === 1 ? "" : 1;
 
-  console.log(newLikes)
+  console.log(newLikes);
   // Update the likes state
   setLikes(newLikes);
 };
+
 
 
 
@@ -300,7 +301,7 @@ style={inputValue.trim() === '' && images.length === 0 ? { pointerEvents: 'none'
               className={likes[index] === 1 ? 'text-primary' : ''}
             >
               <FontAwesomeIcon icon={faThumbsUp} />
-              {likes[index] && likes[index] > 0 && <span className="ml-1">{likes[index]}</span>}
+{likes[index] !== undefined && Number(likes[index]) > 0 && <span className="ml-1">{likes[index]}</span>}
             </button>
 
           </div>
