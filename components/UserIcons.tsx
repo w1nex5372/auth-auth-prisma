@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {ReactNode } from 'react'
 import CustomButton from './CustomBtn'
 import MyFontAwesomeIcon from './FontAwesomeIcon'
 import { useButtonContext } from '@/context/ButtonContext';
@@ -6,7 +6,13 @@ import { faBell, faChevronDown, faQuestion } from '@fortawesome/free-solid-svg-i
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
-const UserIcons = () => {
+
+interface UserIconsProps {
+  children: ReactNode; // Specify the type for children
+}
+
+
+const UserIcons: React.FC<UserIconsProps> = ({ children }) => {
   const { clickedButtonText } = useButtonContext();
 
   return (

@@ -9,7 +9,7 @@ const LoginForm = () => {
   const router = useRouter();
 
 
- const handleSubmit = async (e) => {
+ const handleSubmit = async (e: any) => {
  e.preventDefault()
   signIn("credentials", {
     email, password,

@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
 
 interface CustomButtonProps {
-  children: ReactNode;
-  onClick: () => void;
+  children?: ReactNode;
+  onClick?: () => void;
   primary?: boolean;
   secondary?: boolean;
     customClassName?: string; // Add the customClassName prop

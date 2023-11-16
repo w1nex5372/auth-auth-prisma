@@ -1,31 +1,41 @@
-// ButtonContext.js
 'use client'
+// ButtonContext.js
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
-const ButtonContext = createContext();
+interface ButtonContextProps {
+  clickedButtonText: string;
+  updateClickedButtonText: (text: string) => void;
+}
 
+const ButtonContext = createContext<ButtonContextProps | undefined>(undefined);
 
 interface ButtonProviderProps {
   children: ReactNode;
 }
 
-
 export const ButtonProvider = ({ children }: ButtonProviderProps) => {
-  const [clickedButtonText, setClickedButtonText] = useState("Home"); // Set the default value to "Home".
+  const [clickedButtonText, setClickedButtonText] = useState("Home");
 
   const updateClickedButtonText = (text: string) => {
     setClickedButtonText(text);
   };
 
+  const contextValue: ButtonContextProps = {
+    clickedButtonText,
+    updateClickedButtonText,
+  };
+
   return (
-    <ButtonContext.Provider
-      value={{ clickedButtonText, updateClickedButtonText }}
-    >
+    <ButtonContext.Provider value={contextValue}>
       {children}
     </ButtonContext.Provider>
   );
 };
 
 export const useButtonContext = () => {
-  return useContext(ButtonContext);
+  const context = useContext(ButtonContext);
+  if (!context) {
+    throw new Error("useButtonContext must be used within a ButtonProvider");
+  }
+  return context;
 };

@@ -7,7 +7,7 @@ import MessagePage from '@/app/message/page';
 
 const DisplayedScreen = () => {
     let content = null;
-      const { clickedButtonText } = useButtonContext(); // Get the clickedButtonText from the context
+  const { clickedButtonText } = useButtonContext() as { clickedButtonText: string }; // Type assertion
       
 
       if(clickedButtonText === "Explore"){

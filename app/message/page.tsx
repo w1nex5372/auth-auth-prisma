@@ -1,18 +1,24 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, ChangeEvent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 
-const MessagePage = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [inputValue, setInputValue] = useState('');
-  const [messages, setMessages] = useState([]);
+
+interface MessagePageProps {
+
+}
+
+
+const MessagePage: React.FC<MessagePageProps> = () => {
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
+  const [inputValue, setInputValue] = useState<string>("");
+  const [messages, setMessages] = useState<string[]>([]);
 
   const handleExpandClick = () => {
     setIsExpanded(!isExpanded);
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 

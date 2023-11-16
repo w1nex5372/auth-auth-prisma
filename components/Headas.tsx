@@ -67,7 +67,7 @@ const Headas = () => {
       <div>
         {isLoggedIn ? ( // Render different buttons based on the authentication status
           <UserIcons >
-            
+           
           </UserIcons>
         ) : (
           <>

@@ -23,7 +23,7 @@ const UserProfile = () => {
 
   <div className="parent2 flex-7 w-full  mt-1">
     <ul className='flex gap-2  py-1  px-2  md:text-xs '>
-     <CustomButton onClick={console.log("test")} customClassName="text-xs  h-max hover:bg-primary p-1 bg-secondary md:p-4" 
+     <CustomButton  customClassName="text-xs  h-max hover:bg-primary p-1 bg-secondary md:p-4" 
         
       >
         Edit Profile
