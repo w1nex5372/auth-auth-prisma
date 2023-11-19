@@ -173,9 +173,9 @@ const handleMenuAction = (actionType: string, index: number) => {
 
   return (
     <div className=''>
-      <div className='p-2 border rounded-md m-2'>
+      <div className='p-2  border rounded-md m-2'>
         <div className='flex'>
-          <img src="/123.png" alt="" width={"50px"} className='rounded-full mx-2' />
+          <img src="/face.jpg" alt="" width={"50px"} className='rounded-full mx-2' />
 
           <InputEmoji value={inputValue} onChange={setInputValue} placeholder="Type a message" />
           <div className='flex gap-3 justify-left mt-1  items-center text-lowgray'>
@@ -231,10 +231,10 @@ style={inputValue.trim() === '' && images.length === 0 ? { pointerEvents: 'none'
 
       {/* Render other messages */}
       {messages.map((message, index) => (
-        <div key={index} className='bg- border ml-2 rounded-sm mt-3'>
+        <div key={index} className=' shadow-lg ml-2 rounded-sm mt-3'>
 
           <div className='flex gap-2 ml-3'>
-            <img src="/123.png" alt="" width={"32px"} className='rounded-full' />
+            <img src="/face.jpg" alt="" width={"32px"} className='rounded-full' />
             <h1>name</h1>
             <h1>useracc</h1>
             <p>date</p>

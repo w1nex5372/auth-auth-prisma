@@ -8,7 +8,7 @@ const UserCard = ({ size = "normal"}) => {
       <div className="flex items-center text-center flex-col	">
        
         <div className="w-40 h-42 rounded-full overflow-hidden ">
-          <CustomImage src="123.png" alt='User Profile' className="w-full h-full object-cover" />
+          <CustomImage src="face.jpg" alt='User Profile' className="w-full h-full object-cover" />
         </div>
         <div className="ml-4 ">
           <h2 className="text-2xl font-semibold text-gray-800">Lukas</h2>

@@ -18,7 +18,7 @@ export const Navlinks = () => {
 
   return (
     <div className="relative overflow-auto bg-primary  p-5 flex flex-col h-full">
-      <h1 className="text-secondary text-2xl font-bold text-center m-3">Logo</h1>
+      <h1 className="text-secondary text-2xl font-bold text-center m-3">QuipWave</h1>
       <div className="flex flex-col">
         {buttons.map((button) => (
           <CustomButton
