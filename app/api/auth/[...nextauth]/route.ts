@@ -1,6 +1,6 @@
 // pages/api/auth/[...nextauth].ts
 import { PrismaClient } from "prisma/prisma-client";
-import NextAuth from "next-auth";
+import NextAuth, {NextAuthOptions} from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { comparePasswords } from "@/utils/passwordUtils";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
 
 
 
-const authOptions = {
+const authOptions:NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   // Configure one or more authentication providers
   providers: [
@@ -63,11 +63,7 @@ const authOptions = {
 
     }),
   ],
- session: {
-    strategy: "jwt" as const, // Specify the correct strategy as "jwt"
-    jwt: true,
-    secret: process.env.NEXTAUTH_SECRET,
-  },
+
 };
 
 const handler = NextAuth(authOptions);

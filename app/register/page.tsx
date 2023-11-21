@@ -62,7 +62,7 @@ const RegistrationForm = () => {
         </div>
         <div>
           <CustomButton
-         
+    
             customClassName="w-full bg-primary text-white py-2 rounded-md hover:bg-blue-600"
           onClick={handleSubmit}>
             Register

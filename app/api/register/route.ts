@@ -1,16 +1,17 @@
 import bcrypt from "bcrypt";
 import { PrismaClient } from "prisma/prisma-client";
-const prisma = new PrismaClient();
-import { NextResponse } from "next/server";
+import { NextApiResponse } from "next"; // Update this import
 import { NextApiRequest } from "next";
 
-export default async function handler(req: NextApiRequest) {
+const prisma = new PrismaClient();
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
     try {
       const { email, password } = req.body;
 
       if (!email || !password) {
-        return new NextResponse("Missing email or password", { status: 400 });
+        return res.status(400).json({ error: "Missing email or password" });
       }
 
       const exist = await prisma.user.findUnique({
@@ -20,7 +21,7 @@ export default async function handler(req: NextApiRequest) {
       });
 
       if (exist) {
-        return new NextResponse("User already exists", { status: 400 });
+        return res.status(400).json({ error: "User already exists" });
       }
 
       const hashedPassword = await bcrypt.hash(password, 10);
@@ -32,15 +33,12 @@ export default async function handler(req: NextApiRequest) {
         },
       });
 
-      return new NextResponse(JSON.stringify(user), {
-        status: 200,
-        headers: { "Content-Type": "application/json" },
-      });
+      return res.status(200).json(user);
     } catch (error) {
       console.error("Error during registration:", error);
-      return new NextResponse("Internal Server Error", { status: 500 });
+      return res.status(500).json({ error: "Internal Server Error" });
     }
   } else {
-    return new NextResponse("Method Not Allowed", { status: 405 });
+    return res.status(405).json({ error: "Method Not Allowed" });
   }
 }
