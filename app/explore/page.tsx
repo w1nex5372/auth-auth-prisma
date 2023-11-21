@@ -1,3 +1,4 @@
+'use client'
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import React, { useState, useEffect, MouseEvent, ChangeEvent  } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

@@ -1,3 +1,4 @@
+'use client'
 import { faComment, faFaceSmile, faGear, faImage, faL, faShare, faThumbsUp, faTimes } from '@fortawesome/free-solid-svg-icons';
 import React, { useState, ChangeEvent, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -172,16 +173,16 @@ const handleMenuAction = (actionType: string, index: number) => {
   };
 
   return (
-    <div className=''>
-      <div className='p-2  border rounded-md m-2'>
-        <div className='flex'>
-          <img src="/face.jpg" alt="" width={"50px"} className='rounded-full mx-2' />
+    <div className=' '>
+      <div className='p-2  border-2 border-primary rounded-md m-2'>
+        <div className='md:flex flex '>
+          <img src="/face.jpg" alt="" width={"30px"} className='rounded-full mx-2 m-2 hidden md:block sm:block' />
 
-          <InputEmoji value={inputValue} onChange={setInputValue} placeholder="Type a message" />
-          <div className='flex gap-3 justify-left mt-1  items-center text-lowgray'>
-            <div>
-              <label htmlFor="imageUpload" className='text-gray  text-2xl  cursor-pointer'>
-                <FontAwesomeIcon icon={faImage} />
+          <InputEmoji inputClass='break-words  lg:max-w-[900px] rounded-full ' value={inputValue} onChange={setInputValue} placeholder="Type a message" /> 
+          <div className='items-center flex'>
+                    <label htmlFor="imageUpload" className='text-gray  text-2xl  cursor-pointer'>
+                
+                <FontAwesomeIcon icon={faImage} className=' pt-2' />
                 <input
                   type="file"
                   id="imageUpload"
@@ -191,25 +192,12 @@ const handleMenuAction = (actionType: string, index: number) => {
                   onChange={handleImageChange}
                 />
               </label>
-            </div>
-          </div>
-
-          {imagePreviews.map((preview, index) => (
-            <div key={index} className="block  items-center  ">
-              <img
-                src={preview}
-                alt="preview"
-                className="mt-2 mr-2"
-                style={{ maxWidth: '100px', maxHeight: '100px' }}
-              />
-              <button
-                className="text-red-500 cursor-pointer"
-                onClick={() => handleRemoveImage(index)}
-              >
-                <FontAwesomeIcon icon={faTimes} />
-              </button>
-            </div>
-          ))}
+          
+            </div> 
+        
+         
+            
+      
         </div>
         <button
           className={`border rounded-full p-1 px-3 hover:bg-secondary mt-2 text-white ${
@@ -222,6 +210,24 @@ style={inputValue.trim() === '' && images.length === 0 ? { pointerEvents: 'none'
           Post
         </button>
       </div>
+       <div className='flex p-3 mx-3'>
+             {imagePreviews.map((preview, index) => (
+            <div key={index} className="block  items-center">
+              <img
+                src={preview}
+                alt="preview"
+                className="mt-2 mr-2"
+                style={{ maxWidth: '50px', maxHeight: '100px' }}
+              />
+              <button
+                className="text-red-500 cursor-pointer"
+                onClick={() => handleRemoveImage(index)}
+              >
+                <FontAwesomeIcon icon={faTimes} />
+              </button>
+            </div>
+          ))}
+          </div>
 
 
             {/* bus componentas kuriame visi gales postinti ir matyti */}
@@ -231,7 +237,7 @@ style={inputValue.trim() === '' && images.length === 0 ? { pointerEvents: 'none'
 
       {/* Render other messages */}
       {messages.map((message, index) => (
-        <div key={index} className=' shadow-lg ml-2 rounded-sm mt-3'>
+        <div key={index} className='border shadow-lg ml-2 rounded-sm mt-3 '>
 
           <div className='flex gap-2 ml-3'>
             <img src="/face.jpg" alt="" width={"32px"} className='rounded-full' />
@@ -246,11 +252,21 @@ style={inputValue.trim() === '' && images.length === 0 ? { pointerEvents: 'none'
             />
 
             {activeComment && (
-              <div className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-xl w-1/3 h-1/3 bg-white  shadow-lg items-center'>
-                <button className='absolute top-0 right-0 p-1' onClick={() => handleCommentClose()}>X</button>
+              <div className='fixed   z-50 border top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-xl max-w-full  sm:w-2/3 lg:w-1/3 h-auto sm:h-2/3 bg-white shadow-lg items-center '>
+
+
+
+
+
+                <div className=''>
+                    <button className='absolute top-0 right-0 p-1' onClick={() => handleCommentClose()}>X</button>
                 <div className='flex items-center pt-7'>
-                  <img src="/123.png" alt="" className='w-12  h-12 rounded-full' />
-                 <InputEmoji value={comment} onChange={setComment} placeholder="Type a comment" />
+                  <img src="/face.jpg" alt="" className='w-12  h-12 rounded-full' />
+                  <div className='block w-96'>
+                       <InputEmoji  value={comment} onChange={setComment} 
+                 placeholder="Type a comment" />
+                  </div>
+              
                   <button
                     className={`border rounded-full p-1 px-3 hover:bg-secondary text-white ${
                       comment.trim() === '' ? 'bg-lowgray hover:bg-lowgray': 'bg-primary cursor-pointer'
@@ -260,17 +276,25 @@ style={inputValue.trim() === '' && images.length === 0 ? { pointerEvents: 'none'
                   >
                     Post
                   </button>
+                </div>
+
+                
 
                 </div>
 
-                <div className='block  text-left'>
-{activePostIndex !== null && comments[activePostIndex] && comments[activePostIndex].length > 0 && (
+                <div className='flex   text-left  justify-center '>
+        {activePostIndex !== null && comments[activePostIndex] && comments[activePostIndex].length > 0 && (
   <div>
     {comments[activePostIndex].map((comment, commentIndex) => (
-      <div className='p-1' key={commentIndex}>username {comment.text} time</div>
+      <div className='p-1 flex border  flex-col  sm:flex-row  items-center  rounded-lg bg-lowgray gap-4 justify-evenly  ' key={commentIndex}>
+        <p className='mb-2 sm:mb-0'>username</p>
+        <p className='mb-2 sm:mb-0 w-32 break-words'>{comment.text}</p>
+        <p>14:22</p>
+      </div>
     ))}
   </div>
 )}
+
 
 </div>
 
@@ -283,7 +307,7 @@ style={inputValue.trim() === '' && images.length === 0 ? { pointerEvents: 'none'
             <DropDownMenu handleMenuAction={(actionType: string) => handleMenuAction(actionType, index)} />
           )}
 
-          <div className='text-left ml-4'>{message.text}</div>
+          <div className='text-left ml-4 py-2 px-1 max-w-[450px]  lg:max-w-[1000px]   break-words'>{message.text}</div>
           {message.images && message.images.map((image, i) => (
             <img key={i} src={URL.createObjectURL(image)} alt="uploaded" className="mt-2  p-3" style={{ maxWidth: '100px', maxHeight: '100px' }} />
           ))}
@@ -301,8 +325,8 @@ style={inputValue.trim() === '' && images.length === 0 ? { pointerEvents: 'none'
               className={likes[index] === 1 ? 'text-primary' : ''}
             >
               <FontAwesomeIcon icon={faThumbsUp} />
-{likes[index] !== undefined && Number(likes[index]) > 0 && <span className="ml-1">{likes[index]}</span>}
-            </button>
+      {likes[index] !== undefined && Number(likes[index]) > 0 && <span className="ml-1">{likes[index]}</span>}
+                  </button>
 
           </div>
         </div>

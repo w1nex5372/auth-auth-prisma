@@ -19,7 +19,7 @@ export default function Home() {
   <div className="displayed-screen" style={{ flex: '80%' }}>
     <DisplayedScreen></DisplayedScreen>
   </div>
-  <div className="sidescreen bg-green-400" style={{ flex: '20%' }}>
+  <div className="sidescreen bg-green-400 hidden md:flex sd:flex " style={{ flex: '20%' }}>
     123
   </div>
 </div>

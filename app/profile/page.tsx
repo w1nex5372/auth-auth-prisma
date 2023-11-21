@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, ChangeEvent } from 'react';
 import UserCard from '@/components/UserCard';
 import CustomButton from '@/components/CustomBtn';
@@ -90,7 +91,7 @@ const UserProfile = () => {
       </div>
 
       {/* UserCARD */}
-      <div className="flex ">
+      <div className="md:flex ">
         <div className="parent basis-2/5">
           <UserCard />
         </div>

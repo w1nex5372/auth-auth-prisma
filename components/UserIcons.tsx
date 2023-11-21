@@ -32,7 +32,7 @@ const UserIcons: React.FC<UserIconsProps> = ({ children }) => {
         </div>
           
           <div className='relative h-12 rounded-full bg-lowgray  m-auto p-2 flex'>  
-            <img src="/face.jpg" className='rounded-full object-cover ' alt="" />
+            <img src="/face.png" className='rounded-full object-cover ' alt="" />
 
           <div className='flex items-center gap-1 text-left '>
               <h1 className='p-2 font-bold'>Lukas</h1>

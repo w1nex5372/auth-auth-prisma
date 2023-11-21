@@ -1,4 +1,5 @@
 'use client'
+import CustomButton from '@/components/CustomBtn';
 import React, { useState } from 'react';
 
 
@@ -27,8 +28,8 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div className="fixed lopas top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-75"
-> <div className="bg-white  p-4 w-1/2 md:w-1/3 lg:w-1/4 text-center border border-black">
+    <div className="fixed z-50 lopas top-0 left-0 w-full h-full flex items-center justify-center bg-black  bg-opacity-0"
+> <div className="bg-white  rounded-sm p-4 w-1/2 md:w-1/3 lg:w-1/4 text-center border border-black">
       <h2 className="text-3xl font-semibold mb-4">Registration Form</h2>
       <form className="space-y-4">
         <div>
@@ -37,6 +38,7 @@ const RegistrationForm = () => {
   type="email"
   id="email"
   name="email"
+  placeholder='Email'
   className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
   required
   value={formData.email}
@@ -45,10 +47,12 @@ const RegistrationForm = () => {
 
         </div>
         <div>
+              <label htmlFor="email" className="block text-gray-600">Password</label>
          <input
   type="password"
   id="password"
   name="password"
+  placeholder='Password'
   className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
   required
   value={formData.password}
@@ -57,12 +61,12 @@ const RegistrationForm = () => {
 
         </div>
         <div>
-          <button
+          <CustomButton
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"
+            customClassName="w-full bg-primary text-white py-2 rounded-md hover:bg-blue-600"
           onClick={handleSubmit}>
             Register
-          </button>
+          </CustomButton>
         </div>
       </form>
     </div>

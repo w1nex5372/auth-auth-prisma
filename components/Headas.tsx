@@ -4,6 +4,9 @@ import LoginForm from '@/app/login/page';
 import RegistrationForm from '@/app/register/page';
 import { useSession } from 'next-auth/react';
 import UserIcons from './UserIcons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Navlinks } from './navlinks';
 
 const Headas = () => {
   
@@ -11,6 +14,11 @@ const Headas = () => {
   const [showRegisterForm, setShowRegisterForm] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { data: session } = useSession(); // Get user session data
+  const [showNavMenu, setShowNavMenu] = useState(false);
+
+  const handleBarsMenuClick = () => {
+    setShowNavMenu(!showNavMenu)
+  }
 
 
   useEffect(() => {
@@ -63,21 +71,31 @@ const Headas = () => {
 
   return (
     <div className="">
+      {showNavMenu && (
+        <Navlinks></Navlinks>
+      )}
     
       <div>
         {isLoggedIn ? ( // Render different buttons based on the authentication status
           <UserIcons >
+            
            
           </UserIcons>
         ) : (
-          <>
-            <CustomButton customClassName="text-xs h-max hover:bg-primary p-1 bg-secondary md:p-3 m-1" onClick={handleShowLoginForm}>
-              Log In
-            </CustomButton>
-            <CustomButton customClassName="text-xs h-max hover:bg-secondary p-1 bg-primary md:p-3 m-1" onClick={handleShowRegisterForm}>
-              Register
-            </CustomButton>
-          </>
+      <div className='p-2 flex justify-between items-center'>
+  <div>
+    <FontAwesomeIcon icon={faBars} className='text-3xl pt-1 block sm:hidden' onClick={()=> handleBarsMenuClick()}/>
+  </div>
+  <div className='flex'>
+    <CustomButton customClassName="text-xl h-max hover:bg-primary p-2 bg-secondary md:p-3 m-1" onClick={handleShowLoginForm}>
+      Log In
+    </CustomButton>
+    <CustomButton customClassName="text-xl h-max hover:bg-secondary p-2 bg-primary md:p-3 m-1" onClick={handleShowRegisterForm}>
+      Register
+    </CustomButton>
+  </div>
+</div>
+
         )}
       </div>
 
