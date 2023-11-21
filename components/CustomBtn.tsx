@@ -2,7 +2,8 @@ import React, { ReactNode } from 'react';
 
 interface CustomButtonProps {
   children?: ReactNode;
-  onClick?: () => void;
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+
   primary?: boolean;
   secondary?: boolean;
     customClassName?: string; // Add the customClassName prop
