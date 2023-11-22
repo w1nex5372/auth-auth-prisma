@@ -55,7 +55,7 @@ const LoginForm = () => {
         </div>
         <div>
           <CustomButton
-            type="submit"
+         
             customClassName="w-full bg-primary text-black py-2 rounded-md hover-bg-blue-600"
           >
             Log In

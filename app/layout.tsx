@@ -13,17 +13,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  session,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
+  session?: any; // Make session optional
 }) {
   return (
     <html lang="en">
-      <Provider>
-    <ButtonProvider>
-      <body className={inter.className}>{children}</body>
-      </ButtonProvider>
+      <Provider session={session}>
+        <ButtonProvider>
+          <body className={inter.className}>{children}</body>
+        </ButtonProvider>
       </Provider>
-
     </html>
-  )
+  );
 }
