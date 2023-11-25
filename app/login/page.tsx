@@ -25,7 +25,7 @@ const LoginForm = () => {
   return (
     <div className="fixed z-50 lopas top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-0"
 >
-  <div className="bg-white  rounded-sm p-4 w-1/2 md:w-1/3 lg:w-1/4 text-center border border-black">
+  <div className="bg-white  rounded-sm p-4 w-1/2 md:w-1/3 lg:w-1/4 text-center border-2 border-black">
 
       <h2 className="text-3xl font-semibold mb-4">Login Form</h2>
       <form className="space-y-4" onSubmit={handleSubmit}>

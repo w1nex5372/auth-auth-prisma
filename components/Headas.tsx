@@ -4,30 +4,34 @@ import LoginForm from '@/app/login/page';
 import RegistrationForm from '@/app/register/page';
 import { useSession } from 'next-auth/react';
 import UserIcons from './UserIcons';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { useNavMenuContext } from '@/context/NavMenuContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Navlinks } from './navlinks';
+import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 
-const Headas = () => {
-  
+
+
+
+const Headas: React.FC = () => {
   const [ShowLoginForm, setShowLoginForm] = useState(false);
   const [showRegisterForm, setShowRegisterForm] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { data: session } = useSession(); // Get user session data
-  const [showNavMenu, setShowNavMenu] = useState(false);
+    const { showNavMenu, handleBarsIconClick } = useNavMenuContext();
 
-  const handleBarsMenuClick = () => {
-    setShowNavMenu(!showNavMenu)
-  }
+ 
+
+
+
+  
+
 
 
   useEffect(() => {
     if (session && session.user) {
-      setIsLoggedIn(true); // Update the isLoggedIn state when the user is authenticated
-      setShowLoginForm(false)
+      setIsLoggedIn(true);
+      setShowLoginForm(false);
     }
   }, [session]);
-
 
   const formsToRender = [
     ShowLoginForm && <LoginForm key="login" />,
@@ -42,16 +46,37 @@ const Headas = () => {
     setShowLoginForm(!ShowLoginForm);
   };
 
-  const handleBody = (event : any) => {
-    const classNames = event.target.className.split(' ');
-    if (classNames.includes('lopas') && ShowLoginForm === true) {
-      setShowLoginForm(false);
-    } else if (classNames.includes('lopas') && showRegisterForm === true) {
-      setShowRegisterForm(false);
-    } else {
-      return;
+const handleBody = (event: any) => {
+  const target = event.target;
+  
+  // Check if the target is an SVG element
+  if (target instanceof SVGElement) { 
+    // Check if the clicked SVG element or any of its ancestors have the 'lopas' class
+    const classNames = (target.classList.value || '').split(' ');
+
+    if (classNames.includes('lopas') || (target.closest && target.closest('.lopas'))) {
+      if (ShowLoginForm === true) {
+        setShowLoginForm(false);
+      } else if (showRegisterForm === true) {
+        setShowRegisterForm(false);
+      }
     }
-  };
+  } else {
+    
+    const classNames = (target.className || '').split(' ');
+
+    if (classNames.includes('lopas') || (target.closest && target.closest('.lopas'))) {
+      if (ShowLoginForm === true) {
+        setShowLoginForm(false);
+      } else if (showRegisterForm === true) {
+        setShowRegisterForm(false);
+      }
+    }
+  }
+};
+
+
+
 
   useEffect(() => {
     if (ShowLoginForm) {
@@ -59,50 +84,71 @@ const Headas = () => {
     }
     if (showRegisterForm) {
       document.body.addEventListener('click', handleBody);
-    } else {
+    }
+    else {
       return;
     }
 
-    // Cleanup the event listener when the component unmounts
     return () => {
       document.body.removeEventListener('click', handleBody);
     };
   }, [ShowLoginForm, showRegisterForm]);
 
+
+
   return (
     <div className="">
-      {showNavMenu && (
-        <Navlinks></Navlinks>
-      )}
-    
-      <div>
-        {isLoggedIn ? ( // Render different buttons based on the authentication status
-          <UserIcons >
-            
-           
-          </UserIcons>
-        ) : (
-      <div className='p-2 flex justify-between items-center'>
-  <div>
-    <FontAwesomeIcon icon={faBars} className='text-3xl pt-1 block sm:hidden' onClick={()=> handleBarsMenuClick()}/>
-  </div>
-  <div className='flex'>
-    <CustomButton customClassName="text-xl h-max hover:bg-primary p-2 bg-secondary md:p-3 m-1" onClick={handleShowLoginForm}>
-      Log In
-    </CustomButton>
-    <CustomButton customClassName="text-xl h-max hover:bg-secondary p-2 bg-primary md:p-3 m-1" onClick={handleShowRegisterForm}>
-      Register
-    </CustomButton>
-  </div>
-</div>
+     
 
+      <div>
+        {isLoggedIn ? (
+          <div>
+              <FontAwesomeIcon
+                className={`block sm:hidden fixed top-3 left-3 text-2xl pt-2 text-black z-50 `}
+                icon={faBars}
+                onClick={handleBarsIconClick}
+              ></FontAwesomeIcon>
+            <UserIcons></UserIcons>
+          </div>
+          
+        ) : (
+          <div className="p-2 z-50 flex justify-end items-center ">
+            {showNavMenu ? (
+               <FontAwesomeIcon
+                className={`block sm:hidden mr-auto  pb-2 text-3xl pt-2 text-white z-50 `}
+                icon={faXmark}
+                onClick={handleBarsIconClick}
+              ></FontAwesomeIcon>
+            ) : (
+                 <FontAwesomeIcon
+                className={`block sm:hidden mr-auto  pb-2 text-3xl pt-2 text-black z-50 `}
+                icon={faBars}
+                onClick={handleBarsIconClick}
+              ></FontAwesomeIcon>
+            )}
+            
+            
+            <div className="flex">
+              <CustomButton
+                customClassName="text-xl h-max hover:bg-primary p-2 bg-secondary md:p-3 m-1"
+                onClick={handleShowLoginForm}
+              >
+                Log In
+              </CustomButton>
+              <CustomButton
+                customClassName="text-xl h-max hover:bg-secondary p-2 bg-primary md:p-3 m-1"
+                onClick={handleShowRegisterForm}
+              >
+                Register
+              </CustomButton>
+            </div>
+          </div>
         )}
       </div>
 
       <div>
         {formsToRender.map((form, index) => (
           <div key={index}>{form}</div>
-          
         ))}
       </div>
     </div>

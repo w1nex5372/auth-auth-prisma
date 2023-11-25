@@ -8,11 +8,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 interface UserIconsProps {
-  children: ReactNode; // Specify the type for children
+
 }
 
 
-const UserIcons: React.FC<UserIconsProps> = ({ children }) => {
+const UserIcons: React.FC<UserIconsProps> = () => {
   const { clickedButtonText } = useButtonContext();
 
   return (

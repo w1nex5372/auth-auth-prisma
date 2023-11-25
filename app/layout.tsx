@@ -3,7 +3,8 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { ButtonProvider } from '@/context/ButtonContext'
 import Provider from '@/context/provider'
-import { ThemeProvider } from '@material-tailwind/react'
+import { NavMenuProvider } from '@/context/NavMenuContext'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -21,9 +22,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Provider session={session}>
+        <NavMenuProvider>
+     
+ 
         <ButtonProvider>
           <body className={inter.className}>{children}</body>
         </ButtonProvider>
+     
+
+      </NavMenuProvider>
       </Provider>
     </html>
   );

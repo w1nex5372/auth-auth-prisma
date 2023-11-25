@@ -15,6 +15,12 @@ const MessagePage: React.FC<MessagePageProps> = () => {
   const [inputValue, setInputValue] = useState<string>("");
   const [messages, setMessages] = useState<string[]>([]);
 
+   const filteredMessages = messages.filter((message) =>
+    message.toLowerCase().includes(inputValue.toLowerCase())
+  );
+
+ 
+
   const handleExpandClick = () => {
     setIsExpanded(!isExpanded);
   };
@@ -74,7 +80,7 @@ const MessagePage: React.FC<MessagePageProps> = () => {
                 <p className='text-green'>online</p>
               </div>
               <div className='bg-white testas h-96 shadow-md overflow-auto  '>
-                {messages.map((message, index) => (
+                {filteredMessages.map((message, index) => (
                   <div key={index} className='p-2 text-right'>
                     <p className='text-right text-black p-2 bg-lowgray'>{message}</p>
                     <p className='text-gray'>time 9:14AM</p>

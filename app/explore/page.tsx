@@ -9,6 +9,13 @@ const Explore = () => {
   const [hasSearchResult, setHasSearchResult] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [dropdownStates, setDropdownStates] = useState<{ [key: number]: boolean }>({});
+  const [FriendAdded, setFriendAdded] = useState(false)
+
+  const handleAddFriendClick = () => {
+    console.log("added")
+    setFriendAdded(!FriendAdded);
+
+  }
 
   const [trends, setTrends] = useState([
     { id: 1, category: 'Sports', title: 'Cristiano Ronaldo', posts: '99k posts' },
@@ -17,6 +24,7 @@ const Explore = () => {
     // Add more data as needed
   ]);
 
+  
 
 
   const handleNotInterestedClick = (itemId: number) => {
@@ -108,9 +116,9 @@ useEffect(() => {
 
   return (
     <div className=''>
-      <div className='text-left relative p-3 flex items-center'>
+      <div className='text-left p-3 flex   items-center'>
         <input
-          className='p-2 min-w-full rounded-full bg-lowgray'
+          className='p-2 min-w-full  rounded-full bg-lowgray'
           type="text"
           placeholder='Search'
           value={searchTerm}
@@ -126,8 +134,12 @@ useEffect(() => {
                   <h2>username</h2>
                   <p>@userlogin</p>
                 </div>
-                <button className='ml-auto text-2xl'>+</button>
+                <button className='ml-auto text-2xl' onClick={() => handleAddFriendClick()}>+</button>
+                
               </div>
+              {FriendAdded && (
+                <div className='text-center text-green'>Friend Request has been send</div>
+              )}
             </div>
           </div>
         )}
