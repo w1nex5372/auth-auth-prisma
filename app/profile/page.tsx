@@ -17,6 +17,8 @@ const UserProfile = () => {
 
   const handleShowFriendsClick = () => {
     setShowFriends(!showFriends);
+    setChangePasswordField(false)
+    setAddDescription(false)
   };
 
   const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -35,10 +37,14 @@ const UserProfile = () => {
   const handleChangePasswordClick = () => {
     setChangePasswordField(!changePasswordField);
     setAddDescription(false);
+    setShowFriends(false);
+
   };
 
   const handleAddDescription = () => {
     setAddDescription(!AddDesciption);
+    setChangePasswordField(false);
+    setShowFriends(false);
   };
 
   const handleRemoveSpeciality = (index: number) => {
@@ -85,9 +91,9 @@ const UserProfile = () => {
   };
 
   return (
-    <div className='bg-lowgray h-full'>
+    <div className='bg-lowgray h-full  border-2 border-primary'>
       <div className=''>
-        <h2 className='w-max p-3 font-bold'>My Profile</h2>
+        <h2 className='w-max p-3 text-2xl font-bold'>My Profile</h2>
       </div>
 
       {/* UserCARD */}
@@ -96,22 +102,22 @@ const UserProfile = () => {
           <UserCard />
         </div>
 
-        <div className="parent2 flex-7 w-full mt-1">
-          <ul className='flex gap-2 py-1 px-2 md:text-xs '>
+        <div className="parent2 flex-7 w-full  mt-1">
+          <ul className='flex gap-2 py-1 px-2 md:text-xs  justify-center'>
             <CustomButton
-              customClassName="text-xs font-bold h-max hover:bg-primary p-1 bg-secondary md:p-4"
+              customClassName="text-xs sm:text-xs font-bold h-max hover:bg-primary p-1 py-2 bg-secondary md:p-4"
               onClick={() => handleAddDescription()}
             >
               Add Description
             </CustomButton>
             <CustomButton
-              customClassName="text-xs font-bold h-max hover:bg-primary p-1 bg-secondary md:p-4"
+              customClassName="text-xs  font-bold h-max hover:bg-primary p-1 py-2 bg-secondary md:p-4"
               onClick={() => handleChangePasswordClick()}
             >
               Change Password
             </CustomButton>
             <CustomButton
-              customClassName="text-xs font-bold h-max hover:bg-primary p-1 bg-secondary md:p-4"
+              customClassName="text-xs font-bold h-max hover:bg-primary p-1 py-2 bg-secondary md:p-4"
               onClick={() => handleShowFriendsClick()}
             >
               Show Friends

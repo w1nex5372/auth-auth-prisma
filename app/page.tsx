@@ -9,18 +9,22 @@ CustomImage
 export default function Home() {
  
   return (
-    <main className="relative overflow-auto flex m-auto  h-screen">
-      <div className="sticky top-0  left-0"> 
+    <main className="relative flex m-auto ">
+      <div className="sticky top-0  min-h-screen left-0"> 
         <Navlinks></Navlinks>
       </div>
       <div className="flex-auto text-right"> 
     <Headas></Headas>
-  <div className="flex h-full">
-  <div className="displayed-screen" style={{ flex: '80%' }}>
+
+
+<div className="flex max-w-full">
+  <div className="displayed-screen flex-shrink w-4/5">
     <DisplayedScreen></DisplayedScreen>
   </div>
-  <div className="sidescreen  text-black  hidden md:flex sd:flex " style={{ flex: '20%' }}>
-    he
+
+  <div className="sidescreen flex-shrink text-black hidden md:flex flex-col h-full sd:flex w-1/5">
+    <img src="/ad.png" alt=""  className=''/>
+    <img src="/ad2.png" alt=""  className=''/>
   </div>
 </div>
 

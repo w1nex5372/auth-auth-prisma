@@ -14,8 +14,12 @@ const Explore = () => {
   const handleAddFriendClick = () => {
     console.log("added")
     setFriendAdded(!FriendAdded);
+   
 
   }
+
+
+  
 
   const [trends, setTrends] = useState([
     { id: 1, category: 'Sports', title: 'Cristiano Ronaldo', posts: '99k posts' },
@@ -110,25 +114,30 @@ useEffect(() => {
 
   const handleSearchInputField = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
+     if (inputValue.trim() === '') {
+      setFriendAdded(false);
+    }
     setSearchTerm(inputValue);
     setHasSearchResult(inputValue.trim() !== '');
   };
 
   return (
-    <div className=''>
-      <div className='text-left p-3 flex   items-center'>
+    <div className='  border-2 border-primary'>
+      <div className=' text-left p-3 flex   items-center'>
         <input
-          className='p-2 min-w-full  rounded-full bg-lowgray'
+          className='p-2 min-w-full   rounded-full bg-lowgray'
           type="text"
           placeholder='Search'
           value={searchTerm}
           onChange={handleSearchInputField}
         />
-        {searchTerm && (
-          <div className='absolute overflow-y-scroll w-full h-64 top-full bg-white text-left p-3 border'>
+        
+      </div>
+       {searchTerm && (
+          <div className='w-full  left-0 bg-white text-left p-3 border-2 border-primary'>
             <p>Search results for: {searchTerm}</p>
             <div className='output border'>
-              <div className='p-2 hover:bg-lowgray flex items-center border'>
+              <div className='p-2 hover:bg-lowgray flex items-center '>
                 <img src="face.jpg" alt="" width={"32px"} className='rounded-full mx-1' />
                 <div className='pl-3'>
                   <h2>username</h2>
@@ -143,7 +152,6 @@ useEffect(() => {
             </div>
           </div>
         )}
-      </div>
 
       <div className='text-left p-3 '>
         <h1 className='font-bold text-2xl'>Trends for you</h1>

@@ -24,7 +24,7 @@ const DisplayedScreen = () => {
  
 
   return (
-    <div className="w-full h-full">
+    <div className="">
         {content ? content : "DisplayedScreen"}
      
     </div>

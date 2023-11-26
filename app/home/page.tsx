@@ -226,98 +226,85 @@ const handleMenuAction = (actionType: string, index: number) => {
 
   return (
     <div className=''>
-      <div className='p-2  border-2 border-primary  rounded-md m-2'>
+    <div className="p-2 border-2 border-primary rounded-md m-2">
 
+  <div className="flex flex-col md:flex-row items-center">
+    <img src="/face.jpg" alt="" width={"30px"} className="rounded-full mx-2 m-2 " />
 
+    <textarea
+      className="break-words w-full h-32 p-2 rounded-md border text-black "
+      placeholder='Place a message'
+      value={inputValue}
+      onChange={(e) => setInputValue(e.target.value)}
+    />
 
-        <div className="md:flex flex border-2 ">
-          <img src="/face.jpg" alt="" width={"30px"} className='rounded-full mx-2 m-2 hidden md:block sm:block' />
-
-         
-          <textarea className='break-words   w-full p-1 rounded-sm  border text-black '
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-
-
-          />
-        
-             
-                {showEmojiPicker && (
-                  <div className='absolute right-0  top-20'>
-                      <EmojiPicker width="350px" height="550px" onEmojiClick={handleEmojiSelect} />
-                  </div>
-                
-              )}
-                                
-
-                  <div>
-                     <FontAwesomeIcon icon={faFaceSmile}
-                   onClick={handleEmojiClick}
-                className='px-1 pt-2 text-gray text-2xl'/>
-
-                      <div className='items-center flex'>
-                    <label htmlFor="imageUpload" className='text-gray  text-2xl  cursor-pointer'>
-
-                <FontAwesomeIcon icon={faImage} className=' px-1  pt-2' />
-                <input
-                  type="file"
-                  id="imageUpload"
-                  accept="image/*"
-                  className="hidden border"
-                  multiple
-                  onChange={handleImageChange}
-                />
-              </label>
-          
-            </div> 
-        
-                  </div>
-
-      
-        </div>
-        <button
-          className={`border rounded-full p-1 px-3 hover:bg-secondary mt-2 text-white ${
-            inputValue.trim() === '' && images.length === 0 ? 'bg-gray cursor-not-allowed' : 'bg-primary cursor-pointer'
-          }`}
-          onClick={handleSendMessage}
-          disabled={inputValue.trim() === '' && images.length === 0}
-          style={inputValue.trim() === '' && images.length === 0 ? { pointerEvents: 'none' } : undefined}
-        >
-          Post
-        </button>
+    {showEmojiPicker && (
+      <div className="md:absolute right-0 top-20">
+        <EmojiPicker width="350px" height="550px" onEmojiClick={handleEmojiSelect} />
       </div>
-       <div className='flex p-3 mx-3'>
-             {imagePreviews.map((preview, index) => (
-            <div key={index} className="block  items-center">
-              <img
-                src={preview}
-                alt="preview"
-                className="mt-2 mr-2"
-                style={{ maxWidth: '50px', maxHeight: '100px' }}
-              />
-              <button
-                className="text-red-500 cursor-pointer"
-                onClick={() => handleRemoveImage(index)}
-              >
-                <FontAwesomeIcon icon={faTimes} />
-              </button>
-            </div>
-          ))}
-          </div>
+    )}
+
+    <div className="flex items-center mt-2 md:mt-0">
+      <FontAwesomeIcon
+        icon={faFaceSmile}
+        onClick={handleEmojiClick}
+        className="px-1 pt-2 text-gray text-2xl cursor-pointer"
+      />
+
+      <label htmlFor="imageUpload" className="text-gray text-2xl cursor-pointer px-1 pt-2">
+        <FontAwesomeIcon icon={faImage} />
+        <input
+          type="file"
+          id="imageUpload"
+          accept="image/*"
+          className="hidden border"
+          multiple
+          onChange={handleImageChange}
+        />
+      </label>
+    </div>
+  </div>
+
+  <button
+    className={`border rounded-full p-1 px-5 hover:bg-secondary mt-2 text-white ${
+      inputValue.trim() === '' && images.length === 0 ? 'bg-gray cursor-not-allowed' : 'bg-primary cursor-pointer'
+    }`}
+    onClick={handleSendMessage}
+    disabled={inputValue.trim() === '' && images.length === 0}
+    style={inputValue.trim() === '' && images.length === 0 ? { pointerEvents: 'none' } : undefined}
+  >
+    Post
+  </button>
+</div>
+
+    <div className="flex p-3 mx-3 flex-wrap">
+  {imagePreviews.map((preview, index) => (
+    <div key={index} className="block items-center mb-2 md:mr-2">
+      <img
+        src={preview}
+        alt="preview"
+        className="mt-2 mr-2"
+        style={{ maxWidth: '50px', maxHeight: '100px' }}
+      />
+      <button
+        className="text-red-500 cursor-pointer"
+        onClick={() => handleRemoveImage(index)}
+      >
+        <FontAwesomeIcon icon={faTimes} />
+      </button>
+    </div>
+  ))}
+</div>
 
 
-           
-        <div>
-          
-        </div>
 
       {/* Render other messages */}
       {messages.map((message, index) => (
-        <div key={index} className='border-2 shadow-lg mr-2 rounded-sm mt-3 '>
+        <div key={index} className=' border-2 border-primary  max-w-3xl  sm:max-w-7xl shadow-lg  rounded-sm  mt-3 mx-2 '>
 
-          <div className='flex gap-2 pt-1 ml-3 items-center'>
-            <img src="/face.jpg" alt="" width={"32px"} className='rounded-full ' />
-            <h1>John Bravo</h1>
+          <div className='relative text-left pl-2 block sm:flex  shadow-md   pt-1  items-center gap-1'>
+            <img src="/face.jpg" alt="" width={"32px"} className='rounded-full  mb-1' />
+            <h1 className=''>John Bravo</h1>
             <h1 className='text-gray'>useracc</h1>
             <p className='text-gray'>date</p>
             <FontAwesomeIcon
@@ -328,52 +315,56 @@ const handleMenuAction = (actionType: string, index: number) => {
             />
 
             {activeComment && (
-              <div className='fixed   z-50 border top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-xl max-w-full  sm:w-2/3 lg:w-1/3 h-auto sm:h-2/3 bg-white shadow-lg items-center '>
+              <div className='fixed     z-50 border top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-xl max-w-full  sm:w-2/3 lg:w-1/3 h-auto sm:h-2/3 bg-white shadow-lg items-center '>
 
 
 
 
 
-                <div className=''>
-                    <button className='absolute top-0 right-0 p-1' onClick={() => handleCommentClose()}>X</button>
-                <div className='flex items-center pt-3 border'>
-                  <img src="/face.jpg" alt="" className='w-12  h-12 rounded-full' />
-                  <div className='block  overflow-scroll px-2 mx-1 border rounded-sm'>
-                       <textarea  value={comment} 
-                       className='p-3' 
-                       onChange={(e) => setComment(e.target.value)} 
-                 placeholder="Type a comment" />
-                  </div>
-              
-                  <button
-                    className={`border rounded-full p-1 px-3 hover:bg-secondary text-white ${
-                      comment.trim() === '' ? 'bg-lowgray hover:bg-lowgray': 'bg-primary cursor-pointer'
-                    }`}
-                    onClick={() => handlePostComment()}
-                    disabled={comment.trim() === ''}
-                  >
-                    Post
-                  </button>
-                </div>
+               <div className='flex w-full'>
+  <button className='absolute top-0 right-0 p-2 text-xl' onClick={() => handleCommentClose()}>X</button>
+  <div className='sm:flex flex flex-col justify-center items-center w-full sm:justify-center gap-3 sm:items-center pt-3 rounded-md'>
+    <img src="/face.jpg" alt="" className='ml-2 w-12 h-12 rounded-full' />
+    <div className='block w-full max-w-xl px-4 mx-2 rounded-sm'>
+      <textarea
+        value={comment}
+        className='p-4 w-full h-32 border rounded focus:outline-none resize-none'
+        onChange={(e) => setComment(e.target.value)}
+        placeholder="Type a comment"
+      />
+    </div>
+    <button
+      className={`border rounded-full  w-1/2 py-2 p-1 px-4  hover:bg-secondary  text-white ${
+        comment.trim() === '' ? 'bg-gray hover:bg-lowgray' : 'bg-primary cursor-pointer'
+      }`}
+      onClick={() => handlePostComment()}
+      disabled={comment.trim() === ''}
+    >
+      Post
+    </button>
+  </div>
+</div>
+
 
                 
 
-                </div>
-                
-
-               <div className='flex text-left justify-center'>
+              <div className='flex pt-3   text-left justify-center'>
   {activePostIndex !== null && messages[activePostIndex] && comments[messages[activePostIndex].postId] && comments[messages[activePostIndex].postId].length > 0 && (
-    <div className='overflow-scroll h-56'>
+    <div className='overflow-scroll  h-64 sm:h-80 w-full max-w-screen-md mx-auto'>
       {comments[messages[activePostIndex].postId].map((comment, commentIndex) => (
-        <div className='p-1 flex border flex-col sm:flex-row items-center rounded-lg bg-lowgray gap-4 justify-evenly' key={commentIndex}>
-          <p className='mb-2 sm:mb-0'>username</p>
-          <p className='mb-2 sm:mb-0 w-32 break-words'>{comment.text}</p>
-          <p>14:22</p>
+        <div className='p-1 m-2  flex flex-col sm:flex-row items-center rounded-lg bg-lowgray gap-4 ' key={commentIndex}>
+          <div >
+              <p className='mb-2 text-gray sm:mb-0'>username</p>
+              <p className='text-gray'>14:22</p>
+          </div>
+          <p className='mb-2 sm:mb-0 w-full sm:w-80 break-words'>{comment.text}</p>
+          
         </div>
       ))}
     </div>
   )}
 </div>
+
 
 
 
@@ -384,8 +375,12 @@ const handleMenuAction = (actionType: string, index: number) => {
           {selectedDropdown === index && (
             <DropDownMenu handleMenuAction={(actionType: string) => handleMenuAction(actionType, index)} />
           )}
-
-          <div className='text-left ml-4 py-2 px-1 max-w-[450px]  lg:max-w-[1000px]   break-words'>{message.text}</div>
+       
+            <div className='text-left ml-4 py-2 px-1 break-words whitespace-normal  '>
+            {message.text}
+            </div>
+    
+          
           {message.images && message.images.map((image, i) => (
             <img key={i} src={URL.createObjectURL(image)} alt="uploaded" className="mt-2  p-3" style={{ maxWidth: '100px', maxHeight: '100px' }} />
           ))}

@@ -27,7 +27,7 @@ const LoginForm = () => {
 >
   <div className="bg-white  rounded-sm p-4 w-1/2 md:w-1/3 lg:w-1/4 text-center border-2 border-black">
 
-      <h2 className="text-3xl font-semibold mb-4">Login Form</h2>
+      <h2 className="text-3xl font-semibold text-primary mb-4">Login Form</h2>
       <form className="space-y-4" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="email" className="block text-gray-600">Email</label>
@@ -35,6 +35,7 @@ const LoginForm = () => {
             type="email"
             id="email"
             name="email"
+            placeholder="Enter your email"
             className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
             required
             value={email}
@@ -48,6 +49,7 @@ const LoginForm = () => {
             id="password"
             name="password"
             className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+              placeholder="Enter your email"
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}

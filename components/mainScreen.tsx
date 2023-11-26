@@ -3,7 +3,7 @@ import Headas from './Headas'
 import Home from '@/app/page'
 const MainScreen = () => {
   return (
-    <div className='border '>  
+    <div className=' '>  
          <Headas></Headas>
       <Home></Home>
     </div>

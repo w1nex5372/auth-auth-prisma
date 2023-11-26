@@ -46,35 +46,40 @@ const Headas: React.FC = () => {
     setShowLoginForm(!ShowLoginForm);
   };
 
-const handleBody = (event: any) => {
+
+
+ const handleBody = (event: any) => {
   const target = event.target;
-  
+
+  if (!target) {
+    return;
+  }
+
+  let classNames: string[];
+
   // Check if the target is an SVG element
-  if (target instanceof SVGElement) { 
-    // Check if the clicked SVG element or any of its ancestors have the 'lopas' class
-    const classNames = (target.classList.value || '').split(' ');
-
-    if (classNames.includes('lopas') || (target.closest && target.closest('.lopas'))) {
-      if (ShowLoginForm === true) {
-        setShowLoginForm(false);
-      } else if (showRegisterForm === true) {
-        setShowRegisterForm(false);
-      }
+  if (target instanceof SVGElement) {
+    // Handle the case where the target is an SVG element
+    // You can adjust this based on the structure of your SVG and how you want to handle it
+    const svgParent = target.closest('svg');
+    if (!svgParent) {
+      return;
     }
+
+    // Get the class attribute of the SVG parent
+    const classAttribute = svgParent.getAttribute('class');
+    classNames = classAttribute ? classAttribute.split(' ') : [];
   } else {
-    
-    const classNames = (target.className || '').split(' ');
+    // Get the class names from the target
+    classNames = target.className.split(' ');
+  }
 
-    if (classNames.includes('lopas') || (target.closest && target.closest('.lopas'))) {
-      if (ShowLoginForm === true) {
-        setShowLoginForm(false);
-      } else if (showRegisterForm === true) {
-        setShowRegisterForm(false);
-      }
-    }
+  if (classNames.includes('lopas') && ShowLoginForm === true) {
+    setShowLoginForm(false);
+  } else if (classNames.includes('lopas') && showRegisterForm === true) {
+    setShowRegisterForm(false);
   }
 };
-
 
 
 
@@ -102,13 +107,24 @@ const handleBody = (event: any) => {
 
       <div>
         {isLoggedIn ? (
-          <div>
-              <FontAwesomeIcon
-                className={`block sm:hidden fixed top-3 left-3 text-2xl pt-2 text-black z-50 `}
+          <div className=''>
+              {showNavMenu ? (
+               <FontAwesomeIcon
+                className={`block sm:hidden mr-auto  pb-2 text-3xl pt-2 text-white z-50 `}
+                icon={faXmark}
+                onClick={handleBarsIconClick}
+              ></FontAwesomeIcon>
+            ) : (
+                 <FontAwesomeIcon
+                className={`block sm:hidden mr-auto  pb-2 text-3xl pt-2 text-black z-50 `}
                 icon={faBars}
                 onClick={handleBarsIconClick}
               ></FontAwesomeIcon>
-            <UserIcons></UserIcons>
+            )}
+           
+                 <UserIcons></UserIcons>
+            
+         
           </div>
           
         ) : (
@@ -130,13 +146,13 @@ const handleBody = (event: any) => {
             
             <div className="flex">
               <CustomButton
-                customClassName="text-xl h-max hover:bg-primary p-2 bg-secondary md:p-3 m-1"
+                customClassName="h-max hover:bg-primary p-2 bg-secondary md:p-3 m-1"
                 onClick={handleShowLoginForm}
               >
                 Log In
               </CustomButton>
               <CustomButton
-                customClassName="text-xl h-max hover:bg-secondary p-2 bg-primary md:p-3 m-1"
+                customClassName=" h-max hover:bg-secondary p-2 bg-primary md:p-3 m-1"
                 onClick={handleShowRegisterForm}
               >
                 Register

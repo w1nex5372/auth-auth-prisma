@@ -25,6 +25,7 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       screens: {
+        'lessthen400' : "400",
         'sm': '767px', // Set your desired starting point for sm
         'md': '768px',
         'lg': '1024px',
