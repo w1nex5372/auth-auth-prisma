@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 
@@ -13,6 +13,7 @@ const FriendList: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [openDropdownId, setOpenDropdownId] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const listOfFriends: Friend[] = [
     { id: 1, name: 'Lukas', image: '/face.jpg' },
@@ -24,6 +25,21 @@ const FriendList: React.FC = () => {
   useEffect(() => {
     setFriends(listOfFriends);
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setOpenDropdownId(null);
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [dropdownRef]);
 
   const handleDropDownClick = (friendId: number) => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -52,7 +68,7 @@ const FriendList: React.FC = () => {
 
   return (
     <div>
-      <div className='friend-parent  rounded-lg m-1'>
+      <div className='friend-parent rounded-lg m-1'>
         <div className='text-left p-2'>
           <input
             type='text'
@@ -63,7 +79,7 @@ const FriendList: React.FC = () => {
           />
         </div>
 
-        <div className='friend relative  flex-col flex items-center gap-2 p-2'>
+        <div className='friend relative flex-col flex items-center gap-2 p-2'>
           {filteredFriends.map((friend, index) => (
             <div key={index} className='border rounded-lg items-center w-full text-right flex p-3'>
               <img src={friend.image} alt='' width={'32px'} className='rounded-full mx-1' />
@@ -72,8 +88,8 @@ const FriendList: React.FC = () => {
                 <FontAwesomeIcon icon={faEllipsis} />
               </button>
               {openDropdownId === friend.id && (
-                <div className=' right-0 mt-2 -bottom-20 rounded-md shadow-lg bg-white'>
-                  <div className='py-1' role='menu' aria-orientation='vertical' aria-labelledby='options-menu'>
+                <div ref={dropdownRef} className='right-0 mt-2 -bottom-20 rounded-md shadow-lg bg-white'>
+                  <div className='py-1 bg-white rounded-lg fixed right-1' role='menu' aria-orientation='vertical' aria-labelledby='options-menu'>
                     <button
                       onClick={() => handleRemoveFriend(friend.id)}
                       className='block px-4 py-2 text-sm hover:bg-lowgray text-gray-700 hover:bg-gray-100'

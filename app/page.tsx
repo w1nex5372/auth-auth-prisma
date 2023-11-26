@@ -17,15 +17,12 @@ export default function Home() {
     <Headas></Headas>
 
 
-<div className="flex max-w-full">
-  <div className="displayed-screen flex-shrink w-4/5">
-    <DisplayedScreen></DisplayedScreen>
-  </div>
 
-  <div className="sidescreen flex-shrink text-black hidden md:flex flex-col h-full sd:flex w-1/5">
-    <img src="/ad.png" alt=""  className=''/>
-    <img src="/ad2.png" alt=""  className=''/>
-  </div>
+  <div className="displayed-screen ">
+    <DisplayedScreen></DisplayedScreen>
+
+
+ 
 </div>
 
    

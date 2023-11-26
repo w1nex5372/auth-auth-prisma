@@ -53,6 +53,7 @@ const MessagePage: React.FC<MessagePageProps> = () => {
 
   const handleTextAreaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setInputValue(e.target.value);
+    console.log(messages)
   };
  
 
@@ -84,7 +85,7 @@ const MessagePage: React.FC<MessagePageProps> = () => {
   };
 
   return (
-    <div className='bg-lowgray border-2 border-primary text-left'>
+    <div className='bg-lowgray  border-2 border-primary text-left'>
       <div className='w-full text-center'>
         <FontAwesomeIcon icon={faSearch} className='text-gray' />
         <input
@@ -96,7 +97,7 @@ const MessagePage: React.FC<MessagePageProps> = () => {
       </div>
 
       <div className=''>
-        <div className='father  sm:block'>
+        <div className='father block  sm:block'>
           {filteredPersons.map((person) => (
             <div
               key={person.id}
@@ -110,9 +111,11 @@ const MessagePage: React.FC<MessagePageProps> = () => {
                 <p className=' '>{person.time}</p>
               </div>
               <div className='w-full'>
-                <h1 className='whitespace-nowrap overflow-hidden text-ellipsis text-gray'>
-                  {person.message}
-                </h1>
+               <h1 className='overflow-hidden text-ellipsis text-gray'>
+        {messages[person.id]?.length > 0
+          ? messages[person.id][messages[person.id].length - 1] // Get the last message
+          : "No messages yet"}
+      </h1>
               </div>
             </div>
           ))}
@@ -124,7 +127,7 @@ const MessagePage: React.FC<MessagePageProps> = () => {
               {persons.map((person) => (
                 person.id === expandedPersonId ? (
                   <div className='flex rounded-md justify-center'>
-                      <div key={person.id} className='mx-2 w-1/3 mb-2 m-auto shadow-lg bg-white'>
+                      <div key={person.id} className='mx-2 w-1/2 mb-2 m-auto shadow-lg bg-white'>
                     <div className='flex items-center gap-2 flex-col'>
                       <img src={person.imagePath} alt="" width={"45px"} className='rounded-full pt-2' />
                       <h1 className='font-bold'>{person.name}</h1>

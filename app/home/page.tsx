@@ -279,7 +279,7 @@ const handleMenuAction = (actionType: string, index: number) => {
 
     <div className="flex p-3 mx-3 flex-wrap">
   {imagePreviews.map((preview, index) => (
-    <div key={index} className="block items-center mb-2 md:mr-2">
+    <div key={index} className="block  items-center mb-2 md:mr-2">
       <img
         src={preview}
         alt="preview"
@@ -300,9 +300,9 @@ const handleMenuAction = (actionType: string, index: number) => {
 
       {/* Render other messages */}
       {messages.map((message, index) => (
-        <div key={index} className=' border-2 border-primary  max-w-3xl  sm:max-w-7xl shadow-lg  rounded-sm  mt-3 mx-2 '>
+        <div key={index} className='z-0 border-2 border-primary  max-w-3xl  sm:max-w-7xl shadow-lg  rounded-sm  mt-3 mx-2 '>
 
-          <div className='relative text-left pl-2 block sm:flex  shadow-md   pt-1  items-center gap-1'>
+          <div className=' text-left pl-2 block sm:flex  shadow-md   pt-1  items-center gap-1'>
             <img src="/face.jpg" alt="" width={"32px"} className='rounded-full  mb-1' />
             <h1 className=''>John Bravo</h1>
             <h1 className='text-gray'>useracc</h1>

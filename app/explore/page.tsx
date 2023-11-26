@@ -122,7 +122,7 @@ useEffect(() => {
   };
 
   return (
-    <div className='  border-2 border-primary'>
+    <div className='  border-2 border-primary  '>
       <div className=' text-left p-3 flex   items-center'>
         <input
           className='p-2 min-w-full   rounded-full bg-lowgray'
@@ -156,7 +156,7 @@ useEffect(() => {
       <div className='text-left p-3 '>
         <h1 className='font-bold text-2xl'>Trends for you</h1>
         {trends.map((data) => (
-          <div key={data.id} className='hover:bg-lowgray p-2 flex items-center'>
+          <div key={data.id} className='  hover:bg-lowgray p-2 flex items-center'>
             <div>
               <p className='text-gray'>{data.category}</p>
               <h2 className='font-bold'>{data.title}</h2>
@@ -167,7 +167,7 @@ useEffect(() => {
                 <FontAwesomeIcon icon={faEllipsis} />
               </button>
               {dropdownStates[data.id] && (
-                <div id='dropdown-container' className='absolute border bg-white flex flex-col p-1 rounded-md'>
+                <div id='dropdown-container' className=' fixed right-0 border bg-white flex flex-col p-1 rounded-md'>
                   <button
                     className='py-2 hover:bg-lowgray'
                     onClick={() => handleNotInterestedClick(data.id)}
