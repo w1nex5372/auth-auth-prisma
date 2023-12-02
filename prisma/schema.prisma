@@ -6,13 +6,15 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
+   url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
 // schema.prisma
 model User {
-  id      Int      @id @default(autoincrement())
-  email   String   @unique
-  password    String?
+  id       Int      @id @default(autoincrement())
+  email    String   @unique
+  password String?
 }
