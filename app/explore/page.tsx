@@ -167,7 +167,7 @@ useEffect(() => {
                 <FontAwesomeIcon icon={faEllipsis} />
               </button>
               {dropdownStates[data.id] && (
-                <div id='dropdown-container' className=' fixed right-0 border bg-white flex flex-col p-1 rounded-md'>
+                <div id='dropdown-container' className=' fixed right-0  bg-white flex flex-col p-1 rounded-md'>
                   <button
                     className='py-2 hover:bg-lowgray'
                     onClick={() => handleNotInterestedClick(data.id)}

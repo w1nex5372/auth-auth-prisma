@@ -88,8 +88,8 @@ const FriendList: React.FC = () => {
                 <FontAwesomeIcon icon={faEllipsis} />
               </button>
               {openDropdownId === friend.id && (
-                <div ref={dropdownRef} className='right-0 mt-2 -bottom-20 rounded-md shadow-lg bg-white'>
-                  <div className='py-1 bg-white rounded-lg fixed right-1' role='menu' aria-orientation='vertical' aria-labelledby='options-menu'>
+                <div ref={dropdownRef} className='right-0 mt-2 -bottom-20 rounded-md shadow-lg bg-white '>
+                  <div className='py-1 bg-white rounded-lg md:fixed  right-1' role='menu' aria-orientation='vertical' aria-labelledby='options-menu'>
                     <button
                       onClick={() => handleRemoveFriend(friend.id)}
                       className='block px-4 py-2 text-sm hover:bg-lowgray text-gray-700 hover:bg-gray-100'

@@ -107,16 +107,16 @@ const Headas: React.FC = () => {
 
       <div>
         {isLoggedIn ? (
-          <div className=''>
+          <div className='flex ms:block md:block '>
               {showNavMenu ? (
                <FontAwesomeIcon
-                className={`block sm:hidden mr-auto  pb-2 text-3xl pt-2 text-white z-50 `}
+                className={`block sm:hidden mr-auto  pb-2 text-3xl  pt-4 pl-3 text-white z-50 `}
                 icon={faXmark}
                 onClick={handleBarsIconClick}
               ></FontAwesomeIcon>
             ) : (
                  <FontAwesomeIcon
-                className={`block sm:hidden mr-auto  pb-2 text-3xl pt-2 text-black z-50 `}
+                className={`block   sm:hidden mr-auto  pb-2 text-3xl pt-4 pl-3 text-black z-50 `}
                 icon={faBars}
                 onClick={handleBarsIconClick}
               ></FontAwesomeIcon>
@@ -128,7 +128,7 @@ const Headas: React.FC = () => {
           </div>
           
         ) : (
-          <div className="p-2 z-50 flex justify-end items-center ">
+          <div className="p-2 z-10  flex justify-end items-center ">
             {showNavMenu ? (
                <FontAwesomeIcon
                 className={`block sm:hidden mr-auto  pb-2 text-3xl pt-2 text-white z-50 `}
@@ -162,7 +162,7 @@ const Headas: React.FC = () => {
         )}
       </div>
 
-      <div>
+      <div className=''>
         {formsToRender.map((form, index) => (
           <div key={index}>{form}</div>
         ))}

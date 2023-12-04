@@ -4,6 +4,9 @@ import CustomImage from './CustomImage';
 const UserCard = ({ size = "normal" }) => {
   const [selectedImage, setSelectedImage] = useState<string>('face.jpg');
 
+  const [name, setName] = useState("");
+
+
  
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +31,11 @@ const UserCard = ({ size = "normal" }) => {
           <CustomImage src={selectedImage} alt='User Profile' className="w-full h-full object-cover" />
         </div>
         <div className="ml-4">
-          <h2 className="text-2xl font-semibold text-gray-800">Lukas</h2>
+          <h2 className="text-2xl font-semibold text-gray-800">
+            Name
+
+            
+          </h2>
           <p className="text-gray-500">Specializes</p>
         </div>
         <label htmlFor="imageInput" className="mt-2 bg-secondary text-white p-2 rounded cursor-pointer hover:bg-blue-600">

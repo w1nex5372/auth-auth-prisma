@@ -7,8 +7,14 @@ import MessagePage from '@/app/message/page';
 
 const DisplayedScreen = () => {
     let content = null;
-  const { clickedButtonText } = useButtonContext() as { clickedButtonText: string }; // Type assertion
-      
+ const { clickedButtonText, updateClickedButtonText } = useButtonContext() as {
+  clickedButtonText: string;
+  updateClickedButtonText: (text: string) => void;
+};
+
+
+
+
 
       if(clickedButtonText === "Explore"){
         content = <Explore />
